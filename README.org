@@ -1,0 +1,25 @@
+* Starter project for Scala with Ensime
+- Emacs may take a minute to typecheck everything
+- You need to create a fresh build.sbt.. ensime plugin doesn't do that for you
+- Running ensimeConfig will generate all directories for you
+- You can start SBT (, b r) and run tests on file changes: ~ test
+
+** Initialize
+*** configure plugin (already done on Cato)
+Add to ~/.sbt/1.0/plugins/plugins.sbt
+#+BEGIN_SRC sbt
+addSbtPlugin("org.ensime" % "sbt-ensime" % "2.5.1")
+#+END_SRC
+*** create project directory
+#+BEGIN_SRC bash
+mkdir <project_dir>
+cd <project_dir>
+#+END_SRC
+*** initialize ensime project
+#+BEGIN_SRC bash
+sbt ensimeConfig
+#+END_SRC
+*** create build.sbt file (use the one in this project)
+** Reference
+- [[http://ensime.github.io/editors/emacs/cheat_sheet/][Cheat Sheet]]
+- [[http://ensime.github.io/build_tools/sbt/][Configure Ensime with SBT]]
