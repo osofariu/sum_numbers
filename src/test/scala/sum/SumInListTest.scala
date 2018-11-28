@@ -1,37 +1,37 @@
 package sum
 
-import org.scalatest.path
+import org.scalatest._
 
-class SumInListTest extends path.FunSpec {
+class SumInListTest extends path.FunSpec with Matchers {
 
   describe("SumInList") {
 
     it("check returns false when list of numbers is empty") {
-      assert(SumInList.check(12) == false)
+      testSumSolutions(false, 12)
     }
 
     it("check returns false when list of numbers has just one item") {
-      assert(SumInList.check(12, 12) == false)
+      testSumSolutions(false, 12, 12)
     }
 
     it ("check returns false when list of three numbers has no matching sum") {
-      assert(SumInList.check(10, 1, 2, 7) == false)
+      testSumSolutions(false, 10, 1, 2, 7)
     }
 
     it("check returns true when list of two numers has matching sum") {
-      assert(SumInList.check(10, 8, 2) == true)
+      testSumSolutions(true, 10, 8, 2)
     }
 
     it ("check returns false when list of three numbers has matching sum at beginning") {
-      assert(SumInList.check(3, 1, 2, 7) == true)
+      testSumSolutions(true, 3, 1, 2, 7)
     }
 
     it ("check returns true when list of three numbers has matching sum at end") {
-      assert(SumInList.check(10, 3, 2, 8) == true)
+      testSumSolutions(true, 10, 3, 2, 8)
     }
 
     it ("check returns false when list of three numbers has matching sum in middle") {
-      assert(SumInList.check(9, 1, 2, 7, 13) == true)
+      testSumSolutions(true, 9, 1, 2, 7, 13) 
     }
 
     describe("gen") {
@@ -48,5 +48,12 @@ class SumInListTest extends path.FunSpec {
         assert(SumInList.gen(3).toSet == Set((0, 1),(0, 2), (1, 2)))
       }
     }
+  }
+
+  def testSumSolutions(expectedResult: Boolean, sum: Int, nums: Int*) = {
+    val res1 : Boolean = SumInList.check(sum, nums: _*)
+    val res2 : Boolean = SumInList.checkSimple(sum, nums: _*)
+    res1 shouldBe res2
+    res1 shouldBe expectedResult
   }
 }
