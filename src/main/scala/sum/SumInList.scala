@@ -14,8 +14,8 @@ object SumInList {
     yield (i, j)
   }
 
-  def checkSimple(sim: Int, nums: Int*) : Boolean = {
-    nums.map(num ⇒ nums.contains(sim - num))
+  def checkSimple(sum: Int, nums: Int*) : Boolean = {
+    nums.map(num ⇒ nums.contains(sum - num))
       .filter(_ == true)
       .length > 0
   }
